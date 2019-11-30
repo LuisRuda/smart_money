@@ -12,7 +12,7 @@ const Routes = createAppContainer(
       Report,
     },
     {
-      initialRouteName: 'Report',
+      initialRouteName: 'Main',
       backBehavior: 'history',
     }
   )

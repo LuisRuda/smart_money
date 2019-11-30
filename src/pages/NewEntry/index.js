@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Container,
   FormContainer,
@@ -9,7 +10,7 @@ import {
 
 import BalanceLabel from '~/components/BalanceLabel';
 
-export default function NewEntry() {
+export default function NewEntry({navigation}) {
   return (
     <Container>
       <BalanceLabel />
@@ -23,8 +24,14 @@ export default function NewEntry() {
 
       <ContainerButtons>
         <Button title="Adicionar" />
-        <Button title="Cancelar" />
+        <Button title="Cancelar" onPress={() => navigation.goBack()} />
       </ContainerButtons>
     </Container>
   );
 }
+
+NewEntry.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};
