@@ -7,9 +7,11 @@ import EntrySummary from '~/components/EntrySummary';
 import EntryList from '~/components/EntryList';
 
 export default function Main({navigation}) {
+  const currentBalance = 2064.35;
+
   return (
     <Container>
-      <BalancePanel />
+      <BalancePanel currentBalance={currentBalance} />
       <Button
         title="Adicionar"
         onPress={() => navigation.navigate('NewEntry')}

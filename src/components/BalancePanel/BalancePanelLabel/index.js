@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Container, Label, Value} from './styles';
 
-export default function BalancePanelLabel() {
+export default function BalancePanelLabel({currentBalance}) {
   return (
     <Container>
       <Label>Saldo atual</Label>
-      <Value>R$ 1.000,00</Value>
+      <Value>{currentBalance}</Value>
     </Container>
   );
 }
+
+BalancePanelLabel.propTypes = {
+  currentBalance: PropTypes.number.isRequired,
+};
