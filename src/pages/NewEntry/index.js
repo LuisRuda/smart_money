@@ -11,9 +11,11 @@ import {
 import BalanceLabel from '~/components/BalanceLabel';
 
 export default function NewEntry({navigation}) {
+  const currentBalance = 2064.35;
+
   return (
     <Container>
-      <BalanceLabel />
+      <BalanceLabel currentBalance={currentBalance} />
 
       <FormContainer>
         <TInput />

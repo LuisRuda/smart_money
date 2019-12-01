@@ -1,21 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Container, Title, List, Text} from './styles';
 
-import EntryListItem from './EntryListItem';
-
-export default function EntryList() {
-  const [lancamentos, setLancamentos] = useState([
-    {key: 'Padária R$10'},
-    {key: 'Supermercado R$10'},
-    {key: 'Posto gasolina R$80'},
-  ]);
+export default function EntryList({entries}) {
   return (
     <Container>
       <Title>Últimos lançamentos</Title>
       <List
-        data={lancamentos}
-        renderItem={({item}) => <Text>{item.key}</Text>}
+        data={entries}
+        renderItem={({item}) => (
+          <Text>
+            - {item.description}: R${item.amount}
+          </Text>
+        )}
       />
     </Container>
   );
 }
+
+EntryList.propTypes = {
+  entries: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};

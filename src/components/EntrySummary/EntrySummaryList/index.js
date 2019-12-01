@@ -1,22 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Container, Title, List, Entry} from './styles';
 
-export default function EntrySummaryList() {
-  const [categorias, setCategorias] = useState([
-    {key: 'Alimentação: R$201'},
-    {key: 'Combustível: R$ 120'},
-    {key: 'Aluguel: R$120'},
-    {key: 'Lazer: R$ 250'},
-    {key: 'Outros: R$201'},
-  ]);
-
+export default function EntrySummaryList({entriesGrouped}) {
   return (
     <Container>
       <Title>Categorias</Title>
       <List
-        data={categorias}
-        renderItem={({item}) => <Entry>{item.key}</Entry>}
+        data={entriesGrouped}
+        renderItem={({item}) => (
+          <Entry>
+            - {item.description}: R${item.amount}
+          </Entry>
+        )}
       />
     </Container>
   );
 }
+
+EntrySummaryList.propTypes = {
+  entriesGrouped: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
