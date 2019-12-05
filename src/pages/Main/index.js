@@ -29,7 +29,7 @@ export default function Main({navigation}) {
         onPress={() => navigation.navigate('NewEntry')}
       />
       <EntrySummary entriesGrouped={entriesGrouped} />
-      <EntryList entries={entries} />
+      <EntryList />
     </Container>
   );
 }

@@ -1,8 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useEffect, useState} from 'react';
 import {Container, Title, List, Text} from './styles';
 
-export default function EntryList({entries}) {
+import {getEntries} from '~/services/Entries';
+
+export default function EntryList() {
+  const [entries, setEntries] = useState([]);
+
+  async function loadEntries() {
+    const data = await getEntries();
+    setEntries(data);
+  }
+
+  useEffect(() => {
+    loadEntries();
+  }, []);
+
   return (
     <Container>
       <Title>Últimos lançamentos</Title>
@@ -17,13 +29,3 @@ export default function EntryList({entries}) {
     </Container>
   );
 }
-
-EntryList.propTypes = {
-  entries: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      amount: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-};
