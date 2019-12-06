@@ -14,13 +14,19 @@ import {saveEntry} from '~/services/Entries';
 
 export default function NewEntry({navigation}) {
   const currentBalance = 2064.35;
-  const [amount, setAmount] = useState('0');
+  const entry = navigation.getParam('entry', {
+    id: null,
+    amount: 0,
+    entryAt: new Date(),
+  });
+
+  const [amount, setAmount] = useState(`${entry.amount}`);
 
   function save() {
     const data = {
       amount: parseFloat(amount),
     };
-    saveEntry(data);
+    saveEntry(data, entry);
   }
 
   return (
@@ -45,5 +51,6 @@ export default function NewEntry({navigation}) {
 NewEntry.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
   }).isRequired,
 };

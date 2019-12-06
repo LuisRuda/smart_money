@@ -15,11 +15,6 @@ export default function Main({navigation}) {
     {key: '4', description: 'Lazer ', amount: 250},
     {key: '5', description: 'Outros', amount: 201},
   ];
-  const entries = [
-    {key: '1', description: 'Padária', amount: 10},
-    {key: '2', description: 'Supermercado', amount: 10},
-    {key: '3', description: 'Posto gasolina', amount: 80},
-  ];
 
   return (
     <Container>
@@ -29,7 +24,7 @@ export default function Main({navigation}) {
         onPress={() => navigation.navigate('NewEntry')}
       />
       <EntrySummary entriesGrouped={entriesGrouped} />
-      <EntryList />
+      <EntryList navigation={navigation} />
     </Container>
   );
 }

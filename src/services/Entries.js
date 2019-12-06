@@ -1,33 +1,30 @@
 import {Alert} from 'react-native';
 
 import {getRealm} from './Realm';
+import {getUUID} from './UUID';
 
 export const getEntries = async () => {
   const realm = await getRealm();
 
   const entries = realm.objects('Entry');
-  console.tron.log(entries);
   return entries;
 };
 
-export const saveEntry = async value => {
+export const saveEntry = async (value, entry = {}) => {
   const realm = await getRealm();
   let data = {};
-
-  const {amount} = value;
 
   try {
     realm.write(() => {
       data = {
-        id: 'ABC',
-        amount,
-        entryAt: new Date(),
+        id: value.id || entry.id || getUUID(),
+        amount: value.amount || entry.amount,
+        entryAt: value.entryAt || entry.entryAt,
         isInit: false,
       };
 
       realm.create('Entry', data, true);
     });
-    console.tron.log('saveEntry :: data: ', JSON.stringify(data));
   } catch (err) {
     Alert.alert('Erro ao salvar os dados de lançamento');
   }

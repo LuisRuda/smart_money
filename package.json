@@ -19,7 +19,8 @@
     "react-navigation": "^4.0.10",
     "reactotron-react-native": "^4.0.2",
     "realm": "^3.5.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

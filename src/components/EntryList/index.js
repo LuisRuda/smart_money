@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Title, List, Text} from './styles';
+import PropTypes from 'prop-types';
+import {Container, Title, List, ContainerEntry, Text, Button} from './styles';
 
 import {getEntries} from '~/services/Entries';
 
-export default function EntryList() {
+export default function EntryList({navigation}) {
   const [entries, setEntries] = useState([]);
 
   async function loadEntries() {
@@ -21,11 +22,23 @@ export default function EntryList() {
       <List
         data={entries}
         renderItem={({item}) => (
-          <Text>
-            - {item.description}: R${item.amount}
-          </Text>
+          <ContainerEntry>
+            <Text>
+              - {item.description} R${item.amount}
+            </Text>
+            <Button
+              title={item.id}
+              onPress={() => navigation.navigate('NewEntry', {entry: item})}
+            />
+          </ContainerEntry>
         )}
       />
     </Container>
   );
 }
+
+EntryList.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

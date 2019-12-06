@@ -10,4 +10,8 @@ export const Title = styled.Text`
 
 export const List = styled.FlatList``;
 
+export const ContainerEntry = styled.View``;
+
 export const Text = styled.Text``;
+
+export const Button = styled.Button``;
