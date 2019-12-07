@@ -1,8 +1,10 @@
 import styled from 'styled-components/native';
 
+import colors from '~/assets/colors';
+
 export const Container = styled.SafeAreaView`
   flex: 1;
-  padding: 10px;
+  background-color: ${colors.background};
 `;
 
 export const Button = styled.Button``;

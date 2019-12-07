@@ -1,16 +1,22 @@
 import React from 'react';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
-import {Container} from './styles';
+import {Container, Button, Text} from './styles';
 
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
 
 export default function BalancePanel({currentBalance}) {
   return (
-    <Container>
-      <BalancePanelLabel currentBalance={currentBalance} />
-      <BalancePanelChart />
-    </Container>
+    <View>
+      <Container>
+        <BalancePanelLabel currentBalance={currentBalance} />
+        <BalancePanelChart />
+      </Container>
+      <Button>
+        <Text>+</Text>
+      </Button>
+    </View>
   );
 }
 

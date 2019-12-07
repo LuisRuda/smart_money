@@ -1,10 +1,13 @@
 import React from 'react';
+import {StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
-import {Container, Button} from './styles';
+import {Container} from './styles';
 
 import BalancePanel from '~/components/BalancePanel';
 import EntrySummary from '~/components/EntrySummary';
 import EntryList from '~/components/EntryList';
+
+import colors from '~/assets/colors';
 
 export default function Main({navigation}) {
   const currentBalance = 2064.35;
@@ -18,11 +21,8 @@ export default function Main({navigation}) {
 
   return (
     <Container>
+      <StatusBar barStyle="light-content" backgroundColor={colors.violet} />
       <BalancePanel currentBalance={currentBalance} />
-      <Button
-        title="Adicionar"
-        onPress={() => navigation.navigate('NewEntry')}
-      />
       <EntrySummary entriesGrouped={entriesGrouped} />
       <EntryList navigation={navigation} />
     </Container>
