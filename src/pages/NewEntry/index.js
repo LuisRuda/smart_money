@@ -22,20 +22,22 @@ export default function NewEntry({navigation}) {
 
   const [amount, setAmount] = useState(`${entry.amount}`);
 
-  function OnSave() {
-    const data = {
-      amount: parseFloat(amount),
-    };
-    saveEntry(data, entry);
-    onClose();
+  function onSave() {
+    if (parseFloat(amount) !== 0) {
+      const data = {
+        amount: parseFloat(amount),
+      };
+      saveEntry(data, entry);
+      onClose();
+    }
   }
 
   function OnDelete() {
+    deleteEntry(entry);
     onClose();
   }
 
   function onClose() {
-    deleteEntry(entry);
     navigation.goBack();
   }
 
@@ -51,7 +53,7 @@ export default function NewEntry({navigation}) {
       </FormContainer>
 
       <ContainerButtons>
-        <Button title="Adicionar" onPress={OnSave} />
+        <Button title="Adicionar" onPress={onSave} />
         <Button title="excluir" onPress={OnDelete} />
         <Button title="Cancelar" onPress={onClose} />
       </ContainerButtons>
