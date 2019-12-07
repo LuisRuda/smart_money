@@ -10,7 +10,7 @@ import {
 
 import BalanceLabel from '~/components/BalanceLabel';
 
-import {saveEntry} from '~/services/Entries';
+import {saveEntry, deleteEntry} from '~/services/Entries';
 
 export default function NewEntry({navigation}) {
   const currentBalance = 2064.35;
@@ -22,11 +22,21 @@ export default function NewEntry({navigation}) {
 
   const [amount, setAmount] = useState(`${entry.amount}`);
 
-  function save() {
+  function OnSave() {
     const data = {
       amount: parseFloat(amount),
     };
     saveEntry(data, entry);
+    onClose();
+  }
+
+  function OnDelete() {
+    onClose();
+  }
+
+  function onClose() {
+    deleteEntry(entry);
+    navigation.goBack();
   }
 
   return (
@@ -41,8 +51,9 @@ export default function NewEntry({navigation}) {
       </FormContainer>
 
       <ContainerButtons>
-        <Button title="Adicionar" onPress={save} />
-        <Button title="Cancelar" onPress={() => navigation.goBack()} />
+        <Button title="Adicionar" onPress={OnSave} />
+        <Button title="excluir" onPress={OnDelete} />
+        <Button title="Cancelar" onPress={onClose} />
       </ContainerButtons>
     </Container>
   );

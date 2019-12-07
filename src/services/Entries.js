@@ -31,3 +31,15 @@ export const saveEntry = async (value, entry = {}) => {
 
   return data;
 };
+
+export const deleteEntry = async entry => {
+  const realm = await getRealm();
+
+  try {
+    realm.write(() => {
+      realm.delete(entry);
+    });
+  } catch (err) {
+    Alert.alert('Erro ao excluir este lançamento');
+  }
+};
