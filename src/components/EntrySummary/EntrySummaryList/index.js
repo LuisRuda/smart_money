@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Container, Title, List, Entry} from './styles';
+import {Container, List, Entry} from './styles';
 
 export default function EntrySummaryList({entriesGrouped}) {
   return (
     <Container>
-      <Title>Categorias</Title>
       <List
         data={entriesGrouped}
         renderItem={({item}) => (
