@@ -10,7 +10,6 @@ import EntryList from '~/components/EntryList';
 import colors from '~/assets/colors';
 
 export default function Main({navigation}) {
-  const currentBalance = 2064.35;
   const entriesGrouped = [
     {key: '1', description: 'Alimentação', amount: 201},
     {key: '2', description: 'Combustível ', amount: 120},
@@ -22,7 +21,7 @@ export default function Main({navigation}) {
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor={colors.violet} />
-      <BalancePanel currentBalance={currentBalance} />
+      <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
       <EntrySummary entriesGrouped={entriesGrouped} />
       <EntryList navigation={navigation} />
     </Container>

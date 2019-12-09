@@ -19,6 +19,6 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   margin-top: -25px;
   margin-right: 10px;
+  shadow-color: ${colors.black};
+  elevation: 5;
 `;
-
-export const Text = styled.Text``;
