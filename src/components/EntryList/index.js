@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import PropTypes from 'prop-types';
-import {Container, Title, List, ContainerEntry, Text, Button} from './styles';
+import {List} from './styles';
+
+import ContainerStandard from '~/components/ContainerStandard';
+import EntryListItem from './EntryListItem';
 
 import {getEntries} from '~/services/Entries';
 
-export default function EntryList({navigation}) {
+export default function EntryList() {
   const [entries, setEntries] = useState([]);
 
   async function loadEntries() {
@@ -17,28 +19,22 @@ export default function EntryList({navigation}) {
   }, []);
 
   return (
-    <Container>
-      <Title>Últimos lançamentos</Title>
+    <ContainerStandard
+      title="Últimos lançamentos"
+      actionLabelText="Últimos 7 dias"
+      actionButtonText="Ver mais"
+      onPressActionButton={() => {}}>
       <List
         data={entries}
-        renderItem={({item}) => (
-          <ContainerEntry>
-            <Text>
-              - {item.description} R${item.amount}
-            </Text>
-            <Button
-              title={item.id}
-              onPress={() => navigation.navigate('NewEntry', {entry: item})}
-            />
-          </ContainerEntry>
+        keyExtractor={item => item.id}
+        renderItem={({item, index}) => (
+          <EntryListItem
+            entry={item}
+            isFirstItem={index === 0}
+            isLastItem={index === entries.length - 1}
+          />
         )}
       />
-    </Container>
+    </ContainerStandard>
   );
 }
-
-EntryList.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-};
