@@ -14,8 +14,8 @@ export default function Main({navigation}) {
     <Container>
       <StatusBar barStyle="light-content" backgroundColor={colors.violet} />
       <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
-      <EntrySummary />
-      <EntryList />
+      <EntrySummary navigation={navigation} />
+      <EntryList navigation={navigation} />
     </Container>
   );
 }
