@@ -68,7 +68,7 @@ export default function EntryListItem({
         </DescriptionContainer>
 
         <AmountContainer>
-          <AmountText>R$ 10,00</AmountText>
+          <AmountText>{entry.amount}</AmountText>
         </AmountContainer>
       </Container>
     </TouchableOpacity>
@@ -80,6 +80,7 @@ EntryListItem.propTypes = {
     description: PropTypes.string,
     entryAt: PropTypes.date,
     address: PropTypes.string,
+    amount: PropTypes.number,
   }).isRequired,
   isFirstItem: PropTypes.bool,
   isLastItem: PropTypes.bool,

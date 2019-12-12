@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import {TextInputMask} from 'react-native-masked-text';
@@ -17,10 +17,25 @@ const styles = StyleSheet.create({
 });
 
 export default function NewEntryInput({value, onChangeValue}) {
+  const [debit, setDebit] = useState(value < 0 ? -1 : 1);
+  const [debitPrefix, setDebitPrefix] = useState(value < 0 ? '-' : '');
+
+  function onChangeDebitCredit() {
+    if (debit < 0) {
+      setDebit(1);
+      setDebitPrefix('');
+    } else {
+      setDebit(-1);
+      setDebitPrefix('-');
+    }
+
+    onChangeValue(value * -1);
+  }
+
   return (
     <Container>
-      <DebitButton>
-        <DebitButtonText>-</DebitButtonText>
+      <DebitButton onPress={onChangeDebitCredit}>
+        <DebitButtonText prefix>{debitPrefix}</DebitButtonText>
         <DebitButtonText>R$</DebitButtonText>
       </DebitButton>
       <TextInputMask
@@ -35,7 +50,9 @@ export default function NewEntryInput({value, onChangeValue}) {
         }}
         value={value}
         includeRawValueInChangeText
-        onChangeText={rawValue => onChangeValue(rawValue)}
+        onChangeText={(maskedValue, rawValue) =>
+          onChangeValue(rawValue * debit)
+        }
       />
     </Container>
   );

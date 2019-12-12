@@ -18,4 +18,5 @@ export const DebitButton = styled.TouchableOpacity`
 export const DebitButtonText = styled.Text`
   color: ${colors.white};
   font-size: 28px;
+  ${props => (props.prefix ? 'min-width: 8px' : '')};
 `;
