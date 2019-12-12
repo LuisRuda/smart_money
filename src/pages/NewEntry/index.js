@@ -13,7 +13,6 @@ import BalanceLabel from '~/components/BalanceLabel';
 import {saveEntry, deleteEntry} from '~/services/Entries';
 
 export default function NewEntry({navigation}) {
-  const currentBalance = 2064.35;
   const entry = navigation.getParam('entry', {
     id: null,
     amount: 0,
@@ -43,7 +42,7 @@ export default function NewEntry({navigation}) {
 
   return (
     <Container>
-      <BalanceLabel currentBalance={currentBalance} />
+      <BalanceLabel />
 
       <FormContainer>
         <TInput value={amount} onChangeText={text => setAmount(text)} />
