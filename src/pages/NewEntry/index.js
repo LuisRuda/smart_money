@@ -9,6 +9,7 @@ import {
 } from './styles';
 
 import BalanceLabel from '~/components/BalanceLabel';
+import NewEntryInput from './NewEntryInput';
 
 import {saveEntry, deleteEntry} from '~/services/Entries';
 
@@ -45,7 +46,7 @@ export default function NewEntry({navigation}) {
       <BalanceLabel />
 
       <FormContainer>
-        <TInput value={amount} onChangeText={text => setAmount(text)} />
+        <NewEntryInput value={amount} onChangeValue={setAmount} />
         <TInput />
         <Button title="GPS" />
         <Button title="Camera" />
