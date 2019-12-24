@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  FormContainer,
-  TInput,
-  Button,
-  ContainerButtons,
-} from './styles';
+import {Container, FormContainer, Button, ContainerButtons} from './styles';
 
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
+import NewEntryCategory from './NewEntryCategory';
 
 import {saveEntry, deleteEntry} from '~/services/Entries';
 
@@ -47,7 +42,7 @@ export default function NewEntry({navigation}) {
 
       <FormContainer>
         <NewEntryInput value={amount} onChangeValue={setAmount} />
-        <TInput />
+        <NewEntryCategory />
         <Button title="GPS" />
         <Button title="Camera" />
       </FormContainer>
