@@ -64,7 +64,7 @@ export default function NewEntryCategory({debit, category, onChangeCategory}) {
 }
 
 NewEntryCategory.propTypes = {
-  debit: PropTypes.number.isRequired,
+  debit: PropTypes.bool.isRequired,
   category: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,

@@ -6,7 +6,7 @@ import {getUUID} from './UUID';
 export const getEntries = async () => {
   const realm = await getRealm();
 
-  const entries = realm.objects('Entry');
+  const entries = realm.objects('Entry').sorted('entryAt', true);
   return entries;
 };
 
@@ -20,6 +20,7 @@ export const saveEntry = async (value, entry = {}) => {
         id: value.id || entry.id || getUUID(),
         amount: value.amount || entry.amount,
         entryAt: value.entryAt || entry.entryAt,
+        description: value.category.name,
         isInit: false,
         category: value.category || entry.category,
       };

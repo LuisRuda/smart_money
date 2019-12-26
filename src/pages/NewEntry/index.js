@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {Container, FormContainer, Button, ContainerButtons} from './styles';
+import {
+  Container,
+  FormContainer,
+  Button,
+  ContainerButtons,
+  FormActionContainer,
+} from './styles';
 
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
+import NewEntryDatePicker from './NewEntryDatePicker';
 
 import {saveEntry, deleteEntry} from '~/services/Entries';
 
@@ -19,6 +26,7 @@ export default function NewEntry({navigation}) {
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
+  const [entryAt, setEntryAt] = useState(entry.entryAt);
 
   function onClose() {
     navigation.goBack();
@@ -29,12 +37,12 @@ export default function NewEntry({navigation}) {
       const data = {
         amount: parseFloat(amount),
         category,
+        entryAt,
       };
       saveEntry(data, entry);
       onClose();
     }
   }
-
   function OnDelete() {
     deleteEntry(entry);
     onClose();
@@ -55,8 +63,10 @@ export default function NewEntry({navigation}) {
           category={category}
           onChangeCategory={setCategory}
         />
-        <Button title="GPS" />
-        <Button title="Camera" />
+
+        <FormActionContainer>
+          <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+        </FormActionContainer>
       </FormContainer>
 
       <ContainerButtons>
