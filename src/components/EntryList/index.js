@@ -7,11 +7,11 @@ import EntryListItem from './EntryListItem';
 
 import {getEntries} from '~/services/Entries';
 
-export default function EntryList({navigation}) {
+export default function EntryList({days, navigation}) {
   const [entries, setEntries] = useState([]);
 
   async function loadEntries() {
-    const data = await getEntries();
+    const data = await getEntries(days);
     setEntries(data);
   }
 
@@ -22,7 +22,7 @@ export default function EntryList({navigation}) {
   return (
     <ContainerStandard
       title="Últimos lançamentos"
-      actionLabelText="Últimos 7 dias"
+      actionLabelText={`últimos ${days} dias`}
       actionButtonText="Ver mais"
       onPressActionButton={() => navigation.navigate('Report')}>
       <List
@@ -42,9 +42,14 @@ export default function EntryList({navigation}) {
 }
 
 EntryList.propTypes = {
+  days: PropTypes.number,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
     getParam: PropTypes.func.isRequired,
   }).isRequired,
+};
+
+EntryList.defaultProps = {
+  days: 7,
 };
