@@ -6,9 +6,9 @@ import {
   PickerButtonText,
   ContainerModal,
   ModalItemText,
-  CloseButton,
-  CloseButtonText,
 } from './styles';
+
+import PrimaryButton from '~/components/PrimaryButton';
 
 import {getDebitCategories, getCreditCategories} from '~/services/Categories';
 
@@ -54,9 +54,7 @@ export default function NewEntryCategory({debit, category, onChangeCategory}) {
               </PickerButton>
             )}
           />
-          <CloseButton onPress={onClosePress}>
-            <CloseButtonText>Fechar</CloseButtonText>
-          </CloseButton>
+          <PrimaryButton title="Fechar" onPress={onClosePress} />
         </ContainerModal>
       </Modal>
     </View>

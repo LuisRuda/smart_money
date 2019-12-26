@@ -25,19 +25,3 @@ export const ModalItemText = styled.Text`
   color: ${props => props.color};
   text-align: center;
 `;
-
-export const CloseButton = styled.TouchableOpacity`
-  background-color: ${colors.background};
-  border-color: ${colors.green};
-  border-width: 1px;
-  border-radius: 15px;
-  margin-vertical: 10px;
-  padding: 5px 20px;
-  align-self: center;
-`;
-
-export const CloseButtonText = styled.Text`
-  font-size: 14px;
-  color: ${colors.green};
-  text-align: center;
-`;

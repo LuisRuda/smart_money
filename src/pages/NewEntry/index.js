@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import {
   Container,
   FormContainer,
-  Button,
   ContainerButtons,
   FormActionContainer,
 } from './styles';
 
+import PrimaryButton from '~/components/PrimaryButton';
+import SecondaryButton from '~/components/SecondaryButton';
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
@@ -44,6 +45,7 @@ export default function NewEntry({navigation}) {
       onClose();
     }
   }
+
   function onDelete() {
     deleteEntry(entry);
     onClose();
@@ -72,8 +74,11 @@ export default function NewEntry({navigation}) {
       </FormContainer>
 
       <ContainerButtons>
-        <Button title="Adicionar" onPress={onSave} />
-        <Button title="Cancelar" onPress={onClose} />
+        <PrimaryButton
+          title={entry.id ? 'Salvar' : 'Adicionar'}
+          onPress={onSave}
+        />
+        <SecondaryButton title="Cancelar" onPress={onClose} />
       </ContainerButtons>
     </Container>
   );

@@ -18,9 +18,10 @@ export const TInput = styled.TextInput`
   border-width: 1px;
 `;
 
-export const Button = styled.Button``;
-
-export const ContainerButtons = styled.View``;
+export const ContainerButtons = styled.View`
+  flex-direction: row;
+  justify-content: center;
+`;
 
 export const FormActionContainer = styled.View`
   flex-direction: row;
