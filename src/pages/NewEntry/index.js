@@ -12,15 +12,23 @@ export default function NewEntry({navigation}) {
   const entry = navigation.getParam('entry', {
     id: null,
     amount: 0,
+    category: {id: null, name: 'Selecione'},
     entryAt: new Date(),
   });
 
+  const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
+  const [category, setCategory] = useState(entry.category);
+
+  function onClose() {
+    navigation.goBack();
+  }
 
   function onSave() {
     if (parseFloat(amount) !== 0) {
       const data = {
         amount: parseFloat(amount),
+        category,
       };
       saveEntry(data, entry);
       onClose();
@@ -32,17 +40,21 @@ export default function NewEntry({navigation}) {
     onClose();
   }
 
-  function onClose() {
-    navigation.goBack();
-  }
-
   return (
     <Container>
       <BalanceLabel />
 
       <FormContainer>
-        <NewEntryInput value={amount} onChangeValue={setAmount} />
-        <NewEntryCategory />
+        <NewEntryInput
+          value={amount}
+          onChangeDebit={setDebit}
+          onChangeValue={setAmount}
+        />
+        <NewEntryCategory
+          debit={debit}
+          category={category}
+          onChangeCategory={setCategory}
+        />
         <Button title="GPS" />
         <Button title="Camera" />
       </FormContainer>

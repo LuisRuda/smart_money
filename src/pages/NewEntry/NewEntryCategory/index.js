@@ -1,52 +1,73 @@
 import React, {useState, useEffect} from 'react';
-import {Modal} from 'react-native';
+import {View, Modal, FlatList} from 'react-native';
+import PropTypes from 'prop-types';
 import {
-  Container,
   PickerButton,
   PickerButtonText,
   ContainerModal,
-  List,
   ModalItemText,
   CloseButton,
   CloseButtonText,
 } from './styles';
 
-import {getAllCategories} from '~/services/Categories';
+import {getDebitCategories, getCreditCategories} from '~/services/Categories';
 
-export default function NewEntryCategory() {
+export default function NewEntryCategory({debit, category, onChangeCategory}) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [allCategories, setAllCategories] = useState([]);
+  const [debitCategories, setDebitCategories] = useState([]);
+  const [creditCategories, setCreditCategories] = useState([]);
 
   useEffect(() => {
     async function loadCategories() {
-      const data = await getAllCategories();
-      setAllCategories(data);
+      const dataDebit = await getDebitCategories();
+      const creditDebit = await getCreditCategories();
+
+      setDebitCategories(dataDebit);
+      setCreditCategories(creditDebit);
     }
 
     loadCategories();
   }, []);
 
+  function onClosePress() {
+    setModalVisible(false);
+  }
+
+  function onCatategoryPress(item) {
+    onChangeCategory(item);
+    onClosePress();
+  }
+
   return (
-    <Container>
+    <View>
       <PickerButton onPress={() => setModalVisible(true)}>
-        <PickerButtonText>Alimentação</PickerButtonText>
+        <PickerButtonText>{category.name}</PickerButtonText>
       </PickerButton>
       <Modal animationType="slide" transparent={false} visible={modalVisible}>
         <ContainerModal>
-          <List
-            data={allCategories}
+          <FlatList
+            data={debit ? debitCategories : creditCategories}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
-              <PickerButton>
+              <PickerButton onPress={() => onCatategoryPress(item)}>
                 <ModalItemText color={item.color}>{item.name}</ModalItemText>
               </PickerButton>
             )}
           />
-          <CloseButton onPress={() => setModalVisible(false)}>
+          <CloseButton onPress={onClosePress}>
             <CloseButtonText>Fechar</CloseButtonText>
           </CloseButton>
         </ContainerModal>
       </Modal>
-    </Container>
+    </View>
   );
 }
+
+NewEntryCategory.propTypes = {
+  debit: PropTypes.number.isRequired,
+  category: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+  onChangeCategory: PropTypes.func.isRequired,
+};

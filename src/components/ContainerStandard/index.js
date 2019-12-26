@@ -38,7 +38,7 @@ export default function ContainerStandard({
 
 ContainerStandard.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
   actionLabelText: PropTypes.string,
   actionButtonText: PropTypes.string,
   onPressActionButton: PropTypes.func,

@@ -2,8 +2,6 @@ import styled from 'styled-components/native';
 
 import colors from '~/assets/colors';
 
-export const Container = styled.View``;
-
 export const PickerButton = styled.TouchableOpacity`
   background-color: ${colors.asphalt};
   border-radius: 15px;
@@ -21,8 +19,6 @@ export const ContainerModal = styled.View`
   flex: 1;
   background-color: ${colors.background};
 `;
-
-export const List = styled.FlatList``;
 
 export const ModalItemText = styled.Text`
   font-size: 22px;

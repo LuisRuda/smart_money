@@ -24,8 +24,7 @@ export default function EntryListItem({
   const bulletLineY = isFirstItem ? 25 : 0;
   const bulletLineHeight = isLastItem ? 25 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
-  // const bulletColor = entry.category.color || colors.white;
-  const bulletColor = colors.white;
+  const bulletColor = entry.category.color || colors.white;
 
   return (
     <TouchableOpacity onPress={onEntryPress}>
@@ -78,9 +77,12 @@ export default function EntryListItem({
 EntryListItem.propTypes = {
   entry: PropTypes.shape({
     description: PropTypes.string,
-    entryAt: PropTypes.date,
+    entryAt: PropTypes.string,
     address: PropTypes.string,
     amount: PropTypes.number,
+    category: PropTypes.shape({
+      color: PropTypes.string,
+    }).isRequired,
   }).isRequired,
   isFirstItem: PropTypes.bool,
   isLastItem: PropTypes.bool,

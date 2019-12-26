@@ -16,17 +16,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function NewEntryInput({value, onChangeValue}) {
+export default function NewEntryInput({value, onChangeDebit, onChangeValue}) {
   const [debit, setDebit] = useState(value < 0 ? -1 : 1);
-  const [debitPrefix, setDebitPrefix] = useState(value < 0 ? '-' : '');
+  const [debitPrefix, setDebitPrefix] = useState(value <= 0 ? '-' : '');
 
   function onChangeDebitCredit() {
     if (debit < 0) {
       setDebit(1);
       setDebitPrefix('');
+      onChangeDebit(false);
     } else {
       setDebit(-1);
       setDebitPrefix('-');
+      onChangeDebit(true);
     }
 
     onChangeValue(value * -1);
@@ -60,5 +62,6 @@ export default function NewEntryInput({value, onChangeValue}) {
 
 NewEntryInput.propTypes = {
   value: PropTypes.number.isRequired,
+  onChangeDebit: PropTypes.func.isRequired,
   onChangeValue: PropTypes.func.isRequired,
 };
