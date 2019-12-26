@@ -1,34 +1,34 @@
 import React from 'react';
-import {Container, ContainerButtons, Button} from './styles';
+import PropTypes from 'prop-types';
+import {Container, ScrollView} from './styles';
 
 import BalanceLabel from '~/components/BalanceLabel';
 import EntrySummary from '~/components/EntrySummary';
 import EntryList from '~/components/EntryList';
+import PrimaryButton from '~/components/PrimaryButton';
 
-export default function Report() {
-  const currentBalance = 2064.35;
-  const entriesGrouped = [
-    {key: '1', description: 'Alimentação', amount: 201},
-    {key: '2', description: 'Combustível ', amount: 120},
-    {key: '3', description: 'Aluguel', amount: 120},
-    {key: '4', description: 'Lazer ', amount: 250},
-    {key: '5', description: 'Outros', amount: 201},
-  ];
-  const entries = [
-    {key: '1', description: 'Padária', amount: 10},
-    {key: '2', description: 'Supermercado', amount: 10},
-    {key: '3', description: 'Posto gasolina', amount: 80},
-  ];
-
+export default function Report({navigation}) {
   return (
     <Container>
-      <BalanceLabel currentBalance={currentBalance} />
-      <EntrySummary entriesGrouped={entriesGrouped} />
-      <EntryList entries={entries} />
-      <ContainerButtons>
-        <Button title="Salvar" />
-        <Button title="Cancelar" />
-      </ContainerButtons>
+      <BalanceLabel />
+
+      <ScrollView>
+        <EntrySummary />
+        <EntryList />
+      </ScrollView>
+
+      <PrimaryButton
+        title="Fechar"
+        onPress={() => {
+          navigation.goBack();
+        }}
+      />
     </Container>
   );
 }
+
+Report.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func,
+  }).isRequired,
+};

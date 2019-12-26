@@ -7,4 +7,6 @@ export const Container = styled.SafeAreaView`
   background-color: ${colors.background};
 `;
 
+export const ScrollView = styled.ScrollView``;
+
 export const Button = styled.Button``;

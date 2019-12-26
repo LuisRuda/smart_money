@@ -1,7 +1,7 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
-import {Container} from './styles';
+import {Container, ScrollView} from './styles';
 
 import BalancePanel from '~/components/BalancePanel';
 import EntrySummary from '~/components/EntrySummary';
@@ -14,8 +14,10 @@ export default function Main({navigation}) {
     <Container>
       <StatusBar barStyle="light-content" backgroundColor={colors.violet} />
       <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
-      <EntrySummary navigation={navigation} />
-      <EntryList navigation={navigation} />
+      <ScrollView>
+        <EntrySummary navigation={navigation} />
+        <EntryList navigation={navigation} />
+      </ScrollView>
     </Container>
   );
 }

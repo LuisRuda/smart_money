@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 export default function NewEntryInput({value, onChangeDebit, onChangeValue}) {
-  const [debit, setDebit] = useState(value < 0 ? -1 : 1);
+  const [debit, setDebit] = useState(value <= 0 ? -1 : 1);
   const [debitPrefix, setDebitPrefix] = useState(value <= 0 ? '-' : '');
 
   function onChangeDebitCredit() {

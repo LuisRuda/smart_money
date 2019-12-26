@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
+import colors from '~/assets/colors';
+
 export const Container = styled.View`
   flex: 1;
-  padding: 10px;
+  background-color: ${colors.background};
 `;
 
-export const ContainerButtons = styled.View``;
-
-export const Button = styled.Button``;
+export const ScrollView = styled.ScrollView``;
