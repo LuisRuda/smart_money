@@ -12,6 +12,7 @@ import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
+import NewEntryDeleteAction from './NewEntryDeleteAction';
 
 import {saveEntry, deleteEntry} from '~/services/Entries';
 
@@ -43,7 +44,7 @@ export default function NewEntry({navigation}) {
       onClose();
     }
   }
-  function OnDelete() {
+  function onDelete() {
     deleteEntry(entry);
     onClose();
   }
@@ -66,12 +67,12 @@ export default function NewEntry({navigation}) {
 
         <FormActionContainer>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          {entry.id && <NewEntryDeleteAction onOkPress={onDelete} />}
         </FormActionContainer>
       </FormContainer>
 
       <ContainerButtons>
         <Button title="Adicionar" onPress={onSave} />
-        <Button title="excluir" onPress={OnDelete} />
         <Button title="Cancelar" onPress={onClose} />
       </ContainerButtons>
     </Container>

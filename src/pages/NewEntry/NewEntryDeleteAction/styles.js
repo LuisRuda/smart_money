@@ -2,8 +2,8 @@ import styled from 'styled-components/native';
 
 import colors from '~/assets/colors';
 
-export const Button = styled.TouchableOpacity`
-  background-color: ${colors.asphalt};
+export const Container = styled.TouchableOpacity`
+  background-color: ${colors.red};
   width: 60px;
   height: 60px;
   border-radius: 30px;

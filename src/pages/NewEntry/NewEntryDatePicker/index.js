@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Container, Button} from './styles';
+import {Button} from './styles';
 
 import colors from '~/assets/colors';
 
@@ -19,7 +20,7 @@ export default function NewEntryDatePicker({value, onChange}) {
   }
 
   return (
-    <Container>
+    <View>
       <Button onPress={() => setModalVisible(true)}>
         <Icon name="today" size={30} color={colors.white} />
       </Button>
@@ -35,7 +36,7 @@ export default function NewEntryDatePicker({value, onChange}) {
         onConfirm={onChangeValue}
         onCancel={onCancel}
       />
-    </Container>
+    </View>
   );
 }
 
