@@ -1,23 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {List} from './styles';
 
 import ContainerStandard from '~/components/ContainerStandard';
 import EntryListItem from './EntryListItem';
 
-import {getEntries} from '~/services/Entries';
+import useEntries from '~/hooks/useEntries';
 
 export default function EntryList({days, category, navigation}) {
-  const [entries, setEntries] = useState([]);
-
-  async function loadEntries() {
-    const data = await getEntries(days, category);
-    setEntries(data);
-  }
-
-  useEffect(() => {
-    loadEntries();
-  }, [days, category]);
+  const [entries] = useEntries(days, category);
 
   return (
     <ContainerStandard

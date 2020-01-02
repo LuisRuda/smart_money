@@ -15,7 +15,7 @@ import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
 
-import {saveEntry, deleteEntry} from '~/services/Entries';
+import useEntries from '~/hooks/useEntries';
 
 export default function NewEntry({navigation}) {
   const entry = navigation.getParam('entry', {
@@ -25,6 +25,7 @@ export default function NewEntry({navigation}) {
     entryAt: new Date(),
   });
 
+  const [, saveEntry, deleteEntry] = useEntries();
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
