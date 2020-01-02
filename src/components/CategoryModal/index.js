@@ -5,11 +5,7 @@ import {Container, PickerButton, ModalItemText} from './styles';
 
 import PrimaryButton from '~/components/PrimaryButton';
 
-import {
-  getDebitCategories,
-  getCreditCategories,
-  getAllCategories,
-} from '~/services/Categories';
+import useCategories from '~/hooks/useCategories';
 
 export default function CategoryModal({
   categoryType,
@@ -17,9 +13,7 @@ export default function CategoryModal({
   onConfirm,
   onCancel,
 }) {
-  const [debitCategories, setDebitCategories] = useState([]);
-  const [creditCategories, setCreditCategories] = useState([]);
-  const [allCategories, setAllCategories] = useState([]);
+  const [debitCategories, creditCategories, allCategories] = useCategories();
 
   function categoriesData() {
     if (categoryType === 'all') {
@@ -30,16 +24,6 @@ export default function CategoryModal({
     }
     return creditCategories;
   }
-
-  useEffect(() => {
-    async function loadCategories() {
-      setDebitCategories(await getDebitCategories());
-      setCreditCategories(await getCreditCategories());
-      setAllCategories(await getAllCategories());
-    }
-
-    loadCategories();
-  }, []);
 
   return (
     <Modal animationType="slide" transparent={false} visible={isVisible}>
