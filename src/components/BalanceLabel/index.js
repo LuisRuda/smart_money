@@ -1,14 +1,16 @@
 import React from 'react';
 import {Container, Label, Panel, Value} from './styles';
 
+import useBalance from '~/hooks/useBalance';
+
 export default function BalanceLabel() {
-  const currentBalance = 2064.35;
+  const [balance] = useBalance();
 
   return (
     <Container>
       <Label>Saldo atual</Label>
       <Panel>
-        <Value>{currentBalance}</Value>
+        <Value>{balance}</Value>
       </Panel>
     </Container>
   );

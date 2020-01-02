@@ -7,15 +7,17 @@ import {Container, Button} from './styles';
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
 
+import useBalance from '~/hooks/useBalance';
+
 import colors from '~/assets/colors';
 
 export default function BalancePanel({onNewEntryPress}) {
-  const currentBalance = 2064.35;
+  const [balance] = useBalance();
 
   return (
     <View>
       <Container>
-        <BalancePanelLabel currentBalance={currentBalance} />
+        <BalancePanelLabel currentBalance={balance} />
         <BalancePanelChart />
       </Container>
       <Button onPress={onNewEntryPress}>

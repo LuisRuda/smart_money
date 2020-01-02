@@ -19,9 +19,11 @@ export const Panel = styled(LinearGradient).attrs({
   padding: 10px 30px;
   border-radius: 10px;
   margin-vertical: 10px;
+  min-width: 80px;
 `;
 
 export const Value = styled.Text`
   font-size: 28px;
   color: ${colors.white};
+  text-align: center;
 `;
