@@ -17,7 +17,7 @@ export default function EntryList({days, navigation}) {
 
   useEffect(() => {
     loadEntries();
-  }, []);
+  }, [days]);
 
   return (
     <ContainerStandard
