@@ -29,4 +29,6 @@ export default function RelativeDaysModal({isVisible, onConfirm, onCancel}) {
 
 RelativeDaysModal.propTypes = {
   isVisible: PropTypes.bool.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };

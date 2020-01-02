@@ -7,6 +7,12 @@ export const Container = styled.View`
   background-color: ${colors.background};
 `;
 
+export const FiltersContainer = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  margin: 5px 0;
+`;
+
 export const FilterButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;

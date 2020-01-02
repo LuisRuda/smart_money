@@ -7,17 +7,17 @@ import EntryListItem from './EntryListItem';
 
 import {getEntries} from '~/services/Entries';
 
-export default function EntryList({days, navigation}) {
+export default function EntryList({days, category, navigation}) {
   const [entries, setEntries] = useState([]);
 
   async function loadEntries() {
-    const data = await getEntries(days);
+    const data = await getEntries(days, category);
     setEntries(data);
   }
 
   useEffect(() => {
     loadEntries();
-  }, [days]);
+  }, [days, category]);
 
   return (
     <ContainerStandard
@@ -43,6 +43,7 @@ export default function EntryList({days, navigation}) {
 
 EntryList.propTypes = {
   days: PropTypes.number,
+  category: PropTypes.shape.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

@@ -1,33 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {View, Modal, FlatList} from 'react-native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  PickerButton,
-  PickerButtonText,
-  ContainerModal,
-  ModalItemText,
-} from './styles';
+import {PickerButton, PickerButtonText} from './styles';
 
-import PrimaryButton from '~/components/PrimaryButton';
-
-import {getDebitCategories, getCreditCategories} from '~/services/Categories';
+import CategoryModal from '~/components/CategoryModal';
 
 export default function NewEntryCategory({debit, category, onChangeCategory}) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [debitCategories, setDebitCategories] = useState([]);
-  const [creditCategories, setCreditCategories] = useState([]);
-
-  useEffect(() => {
-    async function loadCategories() {
-      const dataDebit = await getDebitCategories();
-      const creditDebit = await getCreditCategories();
-
-      setDebitCategories(dataDebit);
-      setCreditCategories(creditDebit);
-    }
-
-    loadCategories();
-  }, []);
 
   function onClosePress() {
     setModalVisible(false);
@@ -43,20 +22,12 @@ export default function NewEntryCategory({debit, category, onChangeCategory}) {
       <PickerButton onPress={() => setModalVisible(true)}>
         <PickerButtonText>{category.name}</PickerButtonText>
       </PickerButton>
-      <Modal animationType="slide" transparent={false} visible={modalVisible}>
-        <ContainerModal>
-          <FlatList
-            data={debit ? debitCategories : creditCategories}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => (
-              <PickerButton onPress={() => onCatategoryPress(item)}>
-                <ModalItemText color={item.color}>{item.name}</ModalItemText>
-              </PickerButton>
-            )}
-          />
-          <PrimaryButton title="Fechar" onPress={onClosePress} />
-        </ContainerModal>
-      </Modal>
+      <CategoryModal
+        categoryType={debit ? 'debit' : 'credit'}
+        isVisible={modalVisible}
+        onConfirm={onCatategoryPress}
+        onCancel={onClosePress}
+      />
     </View>
   );
 }
@@ -64,7 +35,6 @@ export default function NewEntryCategory({debit, category, onChangeCategory}) {
 NewEntryCategory.propTypes = {
   debit: PropTypes.bool.isRequired,
   category: PropTypes.shape({
-    id: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
   onChangeCategory: PropTypes.func.isRequired,
