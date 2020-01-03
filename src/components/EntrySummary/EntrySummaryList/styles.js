@@ -1,9 +1,24 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View``;
+import colors from '~/assets/colors';
 
-export const List = styled.FlatList``;
+export const List = styled.FlatList`
+  flex: 1;
+`;
 
-export const Entry = styled.Text`
-  font-size: 14px;
+export const EntrySummaryItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const EntrySummaryItemName = styled.Text`
+  font-size: 12px;
+  color: ${colors.white};
+`;
+
+export const EntrySummaryItemAmount = styled.Text`
+  flex: 1;
+  font-size: 12px;
+  color: ${colors.white};
+  text-align: right;
 `;

@@ -81,7 +81,7 @@ export default function Report({navigation}) {
       </FiltersContainer>
 
       <ScrollView>
-        <EntrySummary />
+        <EntrySummary days={relativeDays} />
         <EntryList days={relativeDays} category={category} />
       </ScrollView>
 
