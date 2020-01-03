@@ -1,8 +1,7 @@
 import React from 'react';
-import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Container, Button} from './styles';
+import {Container, Panel, Button} from './styles';
 
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
@@ -15,15 +14,15 @@ export default function BalancePanel({onNewEntryPress}) {
   const [balance] = useBalance();
 
   return (
-    <View>
-      <Container>
+    <Container>
+      <Panel>
         <BalancePanelLabel currentBalance={balance} />
         <BalancePanelChart />
-      </Container>
+      </Panel>
       <Button onPress={onNewEntryPress}>
         <Icon name="add" size={30} color={colors.white} />
       </Button>
-    </View>
+    </Container>
   );
 }
 

@@ -3,7 +3,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import colors from '~/assets/colors';
 
-export const Container = styled(LinearGradient).attrs({
+export const Container = styled.View`
+  margin-bottom: -20px;
+`;
+
+export const Panel = styled(LinearGradient).attrs({
   colors: [colors.violet, colors.blue],
 })``;
 
