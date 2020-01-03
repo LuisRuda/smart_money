@@ -5,9 +5,7 @@ import colors from '~/assets/colors';
 
 export const Container = styled(LinearGradient).attrs({
   colors: [colors.violet, colors.blue],
-})`
-  padding-vertical: 10px;
-`;
+})``;
 
 export const Button = styled.TouchableOpacity`
   background-color: ${colors.green};

@@ -4,6 +4,7 @@ import colors from '~/assets/colors';
 
 export const Container = styled.View`
   align-items: center;
+  z-index: 1;
 `;
 
 export const Label = styled.Text`
