@@ -13,6 +13,7 @@ import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
+import NewEntryAddressPicker from './NewEntryAddressPicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
 
 import useEntries from '~/hooks/useEntries';
@@ -70,6 +71,7 @@ export default function NewEntry({navigation}) {
 
         <FormActionContainer>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          <NewEntryAddressPicker />
           {entry.id && <NewEntryDeleteAction onOkPress={onDelete} />}
         </FormActionContainer>
       </FormContainer>
