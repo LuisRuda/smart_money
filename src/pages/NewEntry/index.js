@@ -22,8 +22,11 @@ export default function NewEntry({navigation}) {
   const entry = navigation.getParam('entry', {
     id: null,
     amount: 0,
-    category: {id: null, name: 'Selecione'},
     entryAt: new Date(),
+    address: null,
+    latitude: null,
+    longitude: null,
+    category: {id: null, name: 'Selecione'},
   });
 
   const [, saveEntry, deleteEntry] = useEntries();
@@ -31,6 +34,9 @@ export default function NewEntry({navigation}) {
   const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
   const [entryAt, setEntryAt] = useState(entry.entryAt);
+  const [address, setAddress] = useState(entry.address);
+  const [latitude, setLatitude] = useState(entry.latitude);
+  const [longitude, setLongitude] = useState(entry.longitude);
 
   function onClose() {
     navigation.goBack();
@@ -40,6 +46,9 @@ export default function NewEntry({navigation}) {
     if (parseFloat(amount) !== 0) {
       const data = {
         amount: parseFloat(amount),
+        address,
+        latitude,
+        longitude,
         category,
         entryAt,
       };
@@ -71,7 +80,14 @@ export default function NewEntry({navigation}) {
 
         <FormActionContainer>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
-          <NewEntryAddressPicker />
+          <NewEntryAddressPicker
+            address={address}
+            onChange={({ltd, lgt, addr}) => {
+              setLatitude(ltd);
+              setLongitude(lgt);
+              setAddress(addr);
+            }}
+          />
           {entry.id && <NewEntryDeleteAction onOkPress={onDelete} />}
         </FormActionContainer>
       </FormContainer>

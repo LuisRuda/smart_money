@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import colors from '~/assets/colors';
 
 export const Container = styled.TouchableOpacity`
-  background-color: ${colors.asphalt};
+  background-color: ${props => (props.active ? colors.blue : colors.asphalt)};
   width: 60px;
   height: 60px;
   border-radius: 30px;
