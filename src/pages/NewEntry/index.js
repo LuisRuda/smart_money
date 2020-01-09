@@ -14,6 +14,7 @@ import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryAddressPicker from './NewEntryAddressPicker';
+import NewEntryCameraPicker from './NewEntryCameraPicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
 
 import useEntries from '~/hooks/useEntries';
@@ -80,6 +81,7 @@ export default function NewEntry({navigation}) {
 
         <FormActionContainer>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          <NewEntryCameraPicker />
           <NewEntryAddressPicker
             address={address}
             onChange={({ltd, lgt, addr}) => {
