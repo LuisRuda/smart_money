@@ -57,7 +57,7 @@ export default function EntryListItem({
           <DetailsContainer>
             <Icon name="access-time" size={12} color={colors.metal} />
             <DetailsText>{entry.entryAt.toString()}</DetailsText>
-            {entry.address && (
+            {entry.address !== '' && (
               <>
                 <Icon name="person-pin" size={12} color={colors.metal} />
                 <DetailsText>{entry.address}</DetailsText>
