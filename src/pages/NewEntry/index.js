@@ -7,10 +7,10 @@ import {
   FormActionContainer,
 } from './styles';
 
+import InputMoney from '~/components/InputMoney';
 import PrimaryButton from '~/components/PrimaryButton';
 import SecondaryButton from '~/components/SecondaryButton';
 import BalanceLabel from '~/components/BalanceLabel';
-import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryAddressPicker from './NewEntryAddressPicker';
@@ -71,7 +71,7 @@ export default function NewEntry({navigation}) {
       <BalanceLabel />
 
       <FormContainer>
-        <NewEntryInput
+        <InputMoney
           value={amount}
           onChangeDebit={setDebit}
           onChangeValue={setAmount}

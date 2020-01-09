@@ -16,19 +16,38 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function NewEntryInput({value, onChangeDebit, onChangeValue}) {
-  const [debit, setDebit] = useState(value <= 0 ? -1 : 1);
-  const [debitPrefix, setDebitPrefix] = useState(value <= 0 ? '-' : '');
+export default function InputMoney({
+  value,
+  startWithDebit,
+  onChangeDebit,
+  onChangeValue,
+}) {
+  function setDefaultDebit() {
+    if (value === 0) {
+      return startWithDebit ? -1 : 1;
+    }
+    return value <= 0 ? -1 : 1;
+  }
+
+  function setDefaultDebitPrefix() {
+    if (value === 0) {
+      return startWithDebit ? '-' : '';
+    }
+    return value <= 0 ? '-' : '';
+  }
+
+  const [debit, setDebit] = useState(setDefaultDebit);
+  const [debitPrefix, setDebitPrefix] = useState(setDefaultDebitPrefix);
 
   function onChangeDebitCredit() {
     if (debit < 0) {
       setDebit(1);
       setDebitPrefix('');
-      onChangeDebit(false);
+      onChangeDebit && onChangeDebit(false);
     } else {
       setDebit(-1);
       setDebitPrefix('-');
-      onChangeDebit(true);
+      onChangeDebit && onChangeDebit(true);
     }
 
     onChangeValue(value * -1);
@@ -60,8 +79,14 @@ export default function NewEntryInput({value, onChangeDebit, onChangeValue}) {
   );
 }
 
-NewEntryInput.propTypes = {
+InputMoney.propTypes = {
   value: PropTypes.number.isRequired,
-  onChangeDebit: PropTypes.func.isRequired,
+  startWithDebit: PropTypes.bool,
+  onChangeDebit: PropTypes.func,
   onChangeValue: PropTypes.func.isRequired,
+};
+
+InputMoney.defaultProps = {
+  onChangeDebit: null,
+  startWithDebit: true,
 };
