@@ -13,6 +13,10 @@ import {
   DetailsText,
 } from './styles';
 
+import Currency from '~/components/Currency';
+
+import moment from '~/vendors/moment';
+
 import colors from '~/assets/colors';
 
 export default function EntryListItem({
@@ -56,7 +60,7 @@ export default function EntryListItem({
           <DescriptionText>{entry.description}</DescriptionText>
           <DetailsContainer>
             <Icon name="access-time" size={12} color={colors.metal} />
-            <DetailsText>{entry.entryAt.toString()}</DetailsText>
+            <DetailsText>{moment(entry.entryAt).calendar()}</DetailsText>
             {entry.address !== '' && (
               <>
                 <Icon name="person-pin" size={12} color={colors.metal} />
@@ -67,7 +71,9 @@ export default function EntryListItem({
         </DescriptionContainer>
 
         <AmountContainer>
-          <AmountText>{entry.amount}</AmountText>
+          <AmountText>
+            <Currency value={entry.amount} />
+          </AmountText>
         </AmountContainer>
       </Container>
     </TouchableOpacity>

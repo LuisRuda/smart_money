@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Svg, {Circle} from 'react-native-svg';
 import {
-  Container,
   List,
   EntrySummaryItem,
   EntrySummaryItemName,
   EntrySummaryItemAmount,
 } from './styles';
+
+import Currency from '~/components/Currency';
 
 import colors from '~/assets/colors';
 
@@ -29,7 +30,9 @@ export default function EntrySummaryList({data}) {
             />
           </Svg>
           <EntrySummaryItemName>{item.category.name}</EntrySummaryItemName>
-          <EntrySummaryItemAmount>{item.amount}</EntrySummaryItemAmount>
+          <EntrySummaryItemAmount>
+            <Currency value={item.amount} />
+          </EntrySummaryItemAmount>
         </EntrySummaryItem>
       )}
     />
