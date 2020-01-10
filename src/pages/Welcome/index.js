@@ -10,6 +10,7 @@ import LogoImage from '~/assets/images/logo-white.png';
 import useCategories from '~/hooks/useCategories';
 
 import {saveEntry} from '~/services/Entries';
+import {setInitialized} from '~/services/Welcome';
 
 export default function Welcome({navigation}) {
   const [, , , initCategories] = useCategories();
@@ -22,6 +23,7 @@ export default function Welcome({navigation}) {
       category: initCategories,
     });
 
+    setInitialized();
     navigation.navigate('Main');
   }
 
