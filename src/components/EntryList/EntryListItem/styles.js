@@ -27,12 +27,14 @@ export const AmountText = styled.Text`
   color: ${colors.white};
 `;
 
-export const DetailsContainer = styled.View`
+export const DetailsContainerItem = styled.View`
   flex-direction: row;
   align-items: center;
 `;
 
-export const DetailsText = styled.Text`
+export const DetailsText = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   color: ${colors.metal};
   font-size: 12px;
   margin-left: 2px;

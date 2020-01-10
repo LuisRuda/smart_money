@@ -9,7 +9,7 @@ import {
   DescriptionText,
   AmountContainer,
   AmountText,
-  DetailsContainer,
+  DetailsContainerItem,
   DetailsText,
 } from './styles';
 
@@ -26,7 +26,7 @@ export default function EntryListItem({
   onEntryPress,
 }) {
   const bulletLineY = isFirstItem ? 25 : 0;
-  const bulletLineHeight = isLastItem ? 25 : 50;
+  const bulletLineHeight = isLastItem ? 25 : 52;
   const showBulletLine = !(isFirstItem && isLastItem);
   const bulletColor = entry.category.color || colors.white;
 
@@ -34,7 +34,7 @@ export default function EntryListItem({
     <TouchableOpacity onPress={onEntryPress}>
       <Container>
         <View>
-          <Svg height="50" width="30">
+          <Svg height="52" width="30">
             {showBulletLine && (
               <Rect
                 x="9"
@@ -58,16 +58,18 @@ export default function EntryListItem({
 
         <DescriptionContainer>
           <DescriptionText>{entry.description}</DescriptionText>
-          <DetailsContainer>
-            <Icon name="access-time" size={12} color={colors.metal} />
-            <DetailsText>{moment(entry.entryAt).calendar()}</DetailsText>
-            {entry.address !== '' && (
-              <>
+          <View>
+            <DetailsContainerItem>
+              <Icon name="access-time" size={12} color={colors.metal} />
+              <DetailsText>{moment(entry.entryAt).calendar()}</DetailsText>
+            </DetailsContainerItem>
+            {entry.address !== null && (
+              <DetailsContainerItem>
                 <Icon name="person-pin" size={12} color={colors.metal} />
                 <DetailsText>{entry.address}</DetailsText>
-              </>
+              </DetailsContainerItem>
             )}
-          </DetailsContainer>
+          </View>
         </DescriptionContainer>
 
         <AmountContainer>

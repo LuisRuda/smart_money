@@ -1,6 +1,8 @@
 import React from 'react';
 import {Container, Label, Panel, Value} from './styles';
 
+import Currency from '~/components/Currency';
+
 import useBalance from '~/hooks/useBalance';
 
 export default function BalanceLabel() {
@@ -10,7 +12,9 @@ export default function BalanceLabel() {
     <Container>
       <Label>Saldo atual</Label>
       <Panel>
-        <Value>{balance}</Value>
+        <Value>
+          <Currency value={balance} />
+        </Value>
       </Panel>
     </Container>
   );
